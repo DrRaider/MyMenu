@@ -8,7 +8,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.content.Context;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -46,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
             integrator.setOrientationLocked(true);
             integrator.initiateScan();
+            Intent menuActivity = new Intent(MainActivity.this, MenuDisplay.class);
+            startActivity(menuActivity);
         }
 
     }

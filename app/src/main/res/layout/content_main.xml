@@ -41,6 +41,15 @@
             android:layout_centerVertical="true"
             android:text="@string/read_barcode" />
 
+        <Button
+            android:id="@+id/redirectMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/barcode_value"
+            android:layout_centerHorizontal="true"
+            android:text="See menu" />
+
+
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
