@@ -20,10 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PortraitCaptureActivity"
+        <activity
+            android:name=".PortraitCaptureActivity"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
-            tools:replace="android:screenOrientation"
+            tools:replace="android:screenOrientation" />
+        <activity android:name=".FilterActivity"
+            android:exported="true"
             />
     </application>
 
