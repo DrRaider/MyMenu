@@ -3,6 +3,15 @@ package com.github.drraider.mymenu;
 public class TextAndCheckSetters {
     private String text;
     private boolean selected;
+    private int pictureResId;
+
+    public int getPictureResId() {
+        return pictureResId;
+    }
+
+    public void setPictureResId(int pictureResId) {
+        this.pictureResId = pictureResId;
+    }
 
     boolean getSelected() {
         return selected;

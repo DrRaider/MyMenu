@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class FilterRecyclerViewAdapter extends RecyclerView.Adapter<FilterRecycl
             }
         });
         holder.tv_text.setText(arrayList.get(position).getText());
+        holder.pic.setBackgroundResource(arrayList.get(position).getPictureResId());
     }
 
     @Override
@@ -47,10 +49,12 @@ public class FilterRecyclerViewAdapter extends RecyclerView.Adapter<FilterRecycl
     class MyViewHolder extends RecyclerView.ViewHolder{
         CheckBox cb_custom;
         TextView tv_text;
+        ImageView pic;
         MyViewHolder(View itemView) {
             super(itemView);
             cb_custom= (CheckBox) itemView.findViewById(R.id.cb_customRow_id);
             tv_text= (TextView) itemView.findViewById(R.id.tv_customRow_id);
+            pic = (ImageView) itemView.findViewById(R.id.profile_imageview);
         }
     }
 

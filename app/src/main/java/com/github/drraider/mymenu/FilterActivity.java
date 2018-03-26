@@ -17,6 +17,8 @@ public class FilterActivity extends AppCompatActivity {
     TextAndCheckSetters textAndCheckSetters;        // Our Getter Setter class
     FilterRecyclerViewAdapter filterRecyclerViewAdapter;            // Adapter
 
+    public static final int picture = R.drawable.banana;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,7 @@ public class FilterActivity extends AppCompatActivity {
         for(int i = 1;i <= 40; i++) {
             textAndCheckSetters = new TextAndCheckSetters();
             textAndCheckSetters.setText("rupam"+i+"@gmail.com");
+            textAndCheckSetters.setPictureResId(picture);
             arrayList.add(textAndCheckSetters);
         }
 
