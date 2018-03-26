@@ -39,15 +39,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.read_barcode) {
-            // launch barcode activity.
-            IntentIntegrator integrator = new IntentIntegrator(this);
-            integrator.setCaptureActivity(PortraitCaptureActivity.class);
-            integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
-            integrator.setOrientationLocked(true);
-            integrator.initiateScan();
-        }
+        switch (v.getId()) {
+            case R.id.read_barcode:
+                // launch barcode activity.
+                IntentIntegrator integrator = new IntentIntegrator(this);
+                integrator.setCaptureActivity(PortraitCaptureActivity.class);
+                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+                integrator.setOrientationLocked(true);
+                integrator.initiateScan();
+                break;
 
+            case R.id.filter:
+                //TODO: fix button
+                Intent intent = new Intent(MainActivity.this, FilterActivity.class);
+                this.startActivity(intent);
+                break;
+        }
     }
 
     @Override

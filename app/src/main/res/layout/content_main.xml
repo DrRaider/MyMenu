@@ -41,6 +41,14 @@
             android:layout_centerVertical="true"
             android:text="@string/read_barcode" />
 
+        <Button
+            android:id="@+id/filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/barcode_value"
+            android:layout_alignBottom="@+id/barcode_value"
+            android:layout_centerHorizontal="true"
+            android:text="@string/filter" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

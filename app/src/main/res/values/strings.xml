@@ -5,4 +5,5 @@
     <string name="read_barcode">Read Barcode</string>
     <string name="barcode_success">Barcode read successfully</string>
     <string name="barcode_failure">No barcode captured</string>
+    <string name="filter">Filter</string>
 </resources>
