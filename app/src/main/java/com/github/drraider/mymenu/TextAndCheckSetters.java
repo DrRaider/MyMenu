@@ -1,9 +1,12 @@
 package com.github.drraider.mymenu;
 
+import java.util.ArrayList;
+
 public class TextAndCheckSetters {
     private String text;
     private boolean selected;
     private int pictureResId;
+
 
     int getPictureResId() {
         return pictureResId;
@@ -27,5 +30,14 @@ public class TextAndCheckSetters {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    @Override
+    public String toString() {
+        return "TextAndCheckSetters{" +
+                "text='" + text + '\'' +
+                ", selected=" + selected +
+                ", pictureResId=" + pictureResId +
+                '}';
     }
 }

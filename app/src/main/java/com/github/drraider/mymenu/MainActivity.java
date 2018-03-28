@@ -1,5 +1,6 @@
 package com.github.drraider.mymenu;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,9 +10,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,31 +47,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.read_barcode:
                 // launch barcode activity.
                 IntentIntegrator integrator = new IntentIntegrator(this);
+                integrator.setRequestCode(2);
                 integrator.setCaptureActivity(PortraitCaptureActivity.class);
-                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
                 integrator.setOrientationLocked(true);
                 integrator.initiateScan();
                 break;
 
             case R.id.filter:
-                //TODO: fix button
                 Log.i("Filter", "clicked on filter activity");
                 Intent intent = new Intent(MainActivity.this, FilterActivity.class);
-                this.startActivity(intent);
+                this.startActivityForResult(intent, 1);
                 break;
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if(scanResult != null) {
-            statusMessage.setText(R.string.barcode_success);
-            barcodeValue.setText(scanResult.getContents());
-            Log.d("SCAN", "Barcode read: " + scanResult.getContents());
-        } else {
-            statusMessage.setText(R.string.barcode_failure);
-            Log.d("SCAN", "No barcode captured, intent data is null");
+        switch (requestCode) {
+        case 1:
+            if(resultCode == Activity.RESULT_OK){
+                ArrayList<String> result = data.getStringArrayListExtra("List");
+                Log.d("Filter:", result.toString());
+            }
+            break;
+        case 2:
+            IntentResult scanResult = IntentIntegrator.parseActivityResult(resultCode, data);
+            if (scanResult.getContents() != null) {
+                statusMessage.setText(R.string.barcode_success);
+                barcodeValue.setText(scanResult.getContents());
+                Log.d("SCAN", "Barcode read: " + scanResult.getContents());
+            } else {
+                statusMessage.setText(R.string.barcode_failure);
+                Log.d("SCAN", "No barcode captured, intent data is null");
+            }
+            break;
         }
     }
 
@@ -93,4 +107,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         return super.onOptionsItemSelected(item);
     }
+
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
+
+    @Override
+    public void onBackPressed()
+    {
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis())
+        {
+            super.onBackPressed();
+            return;
+        }
+        else { Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show(); }
+
+        mBackPressed = System.currentTimeMillis();
+    }
+
 }

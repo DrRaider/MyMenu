@@ -7,4 +7,5 @@
     <string name="barcode_failure">No barcode captured</string>
     <string name="filter">Filter</string>
     <string name="thumbnail">thumbnail</string>
+    <string name="done">Done</string>
 </resources>

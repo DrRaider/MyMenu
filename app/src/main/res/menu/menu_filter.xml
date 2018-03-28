@@ -4,10 +4,8 @@
     tools:context="com.github.drraider.mymenu.MainActivity">
 
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
-
-
+        android:id="@+id/action_validate"
+        android:icon="@drawable/ic_cab_done_mtrl_alpha"
+        android:title="@string/done"
+        app:showAsAction="always|withText" />
 </menu>

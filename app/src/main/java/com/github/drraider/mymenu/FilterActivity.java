@@ -1,5 +1,7 @@
 package com.github.drraider.mymenu;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
@@ -64,9 +66,10 @@ public class FilterActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_filter, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -76,8 +79,17 @@ public class FilterActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_validate) {
+            Intent intent = new Intent(FilterActivity.this, MainActivity.class);
+            ArrayList<String> tmp = new ArrayList<>();
+            for (int i = 0; i < arrayList.size(); i++ ) {
+                TextAndCheckSetters e = arrayList.get(i);
+                if (e.getSelected())
+                    tmp.add(e.getText());
+            }
+            intent.putStringArrayListExtra("List", tmp);
+            setResult(Activity.RESULT_OK, intent);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
