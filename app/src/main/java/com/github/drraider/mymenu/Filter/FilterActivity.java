@@ -1,4 +1,4 @@
-package com.github.drraider.mymenu;
+package com.github.drraider.mymenu.Filter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +17,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.github.drraider.mymenu.MainActivity;
+import com.github.drraider.mymenu.R;
+import com.github.drraider.mymenu.Utils.Utils;
 
 public class FilterActivity extends AppCompatActivity {
 

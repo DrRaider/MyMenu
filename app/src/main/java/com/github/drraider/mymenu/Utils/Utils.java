@@ -1,4 +1,4 @@
-package com.github.drraider.mymenu;
+package com.github.drraider.mymenu.Utils;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,8 +8,8 @@ import org.json.JSONObject;
 
 import java.io.*;
 
-class Utils {
-    static JSONObject getJSon(Context context, String filename) {
+public class Utils {
+    public static JSONObject getJSon(Context context, String filename) {
         try {
 
             InputStream is = context.getAssets().open(filename);

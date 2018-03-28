@@ -1,4 +1,4 @@
-package com.github.drraider.mymenu;
+package com.github.drraider.mymenu.Filter;
 
 import java.util.ArrayList;
 

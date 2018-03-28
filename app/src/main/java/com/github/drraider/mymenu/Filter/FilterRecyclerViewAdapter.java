@@ -1,4 +1,4 @@
-package com.github.drraider.mymenu;
+package com.github.drraider.mymenu.Filter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.github.drraider.mymenu.R;
 
 import java.util.ArrayList;
 

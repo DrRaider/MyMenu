@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.drraider.mymenu.Filter.FilterActivity;
+import com.github.drraider.mymenu.Scanner.PortraitCaptureActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -21,6 +23,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private TextView statusMessage;
     private TextView barcodeValue;
+
+    private ArrayList<String> result = new ArrayList<>();
+
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.filter).setOnClickListener(this);
     }
 
-    /**
-     * Called when a view has been clicked.
-     *
-     * @param v The view that was clicked.
-     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (requestCode) {
         case 1:
             if(resultCode == Activity.RESULT_OK){
-                ArrayList<String> result = data.getStringArrayListExtra("List");
+                result = data.getStringArrayListExtra("List");
                 Log.d("Filter:", result.toString());
             }
             break;
@@ -107,9 +109,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         return super.onOptionsItemSelected(item);
     }
-
-    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
-    private long mBackPressed;
 
     @Override
     public void onBackPressed()
