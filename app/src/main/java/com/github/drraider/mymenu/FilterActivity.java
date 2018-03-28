@@ -1,33 +1,34 @@
 package com.github.drraider.mymenu;
 
-
-
 import android.os.Bundle;
+
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class FilterActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ArrayList<TextAndCheckSetters> arrayList;
-    TextAndCheckSetters textAndCheckSetters;        // Our Getter Setter class
-    FilterRecyclerViewAdapter filterRecyclerViewAdapter;            // Adapter
-
-    public int picture;
+    TextAndCheckSetters textAndCheckSetters;
+    FilterRecyclerViewAdapter filterRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         recyclerView = (RecyclerView) findViewById(R.id.filter_list);
 
@@ -50,16 +51,36 @@ public class FilterActivity extends AppCompatActivity {
             else {
                 throw new Exception("Empty filter list");
             }
-        } catch (JSONException e) {
-            Log.e("Exception", " : ", e);
         } catch (Exception ex) {
             Log.e("Exception", " : ", ex);
         }
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(FilterActivity.this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        filterRecyclerViewAdapter = new FilterRecyclerViewAdapter(FilterActivity.this, arrayList);
+        filterRecyclerViewAdapter = new FilterRecyclerViewAdapter(arrayList);
         recyclerView.setAdapter(filterRecyclerViewAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

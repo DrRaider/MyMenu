@@ -1,6 +1,5 @@
 package com.github.drraider.mymenu;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,7 @@ public class FilterRecyclerViewAdapter extends RecyclerView.Adapter<FilterRecycl
 
     private ArrayList<TextAndCheckSetters> arrayList;
 
-    FilterRecyclerViewAdapter(Context context, ArrayList<TextAndCheckSetters> arrayList) {
+    FilterRecyclerViewAdapter(ArrayList<TextAndCheckSetters> arrayList) {
         this.arrayList = arrayList;
     }
 
