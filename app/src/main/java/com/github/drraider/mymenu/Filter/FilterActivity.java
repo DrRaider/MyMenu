@@ -20,7 +20,7 @@ import android.view.MenuItem;
 
 import com.github.drraider.mymenu.MainActivity;
 import com.github.drraider.mymenu.R;
-import com.github.drraider.mymenu.Utils.Utils;
+import com.github.drraider.mymenu.Utils;
 
 public class FilterActivity extends AppCompatActivity {
 

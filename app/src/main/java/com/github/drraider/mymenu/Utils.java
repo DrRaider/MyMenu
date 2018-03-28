@@ -1,4 +1,4 @@
-package com.github.drraider.mymenu.Utils;
+package com.github.drraider.mymenu;
 
 import android.content.Context;
 import android.util.Log;
