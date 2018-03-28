@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         barcodeValue = (TextView)findViewById(R.id.barcode_value);
 
         findViewById(R.id.read_barcode).setOnClickListener(this);
-
+        findViewById(R.id.filter).setOnClickListener(this);
     }
 
     /**
@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.filter:
                 //TODO: fix button
+                Log.i("Filter", "clicked on filter activity");
                 Intent intent = new Intent(MainActivity.this, FilterActivity.class);
                 this.startActivity(intent);
                 break;

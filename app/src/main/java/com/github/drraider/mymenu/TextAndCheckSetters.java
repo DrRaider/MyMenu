@@ -5,11 +5,11 @@ public class TextAndCheckSetters {
     private boolean selected;
     private int pictureResId;
 
-    public int getPictureResId() {
+    int getPictureResId() {
         return pictureResId;
     }
 
-    public void setPictureResId(int pictureResId) {
+    void setPictureResId(int pictureResId) {
         this.pictureResId = pictureResId;
     }
 

@@ -17,7 +17,6 @@ public class FilterRecyclerViewAdapter extends RecyclerView.Adapter<FilterRecycl
     private ArrayList<TextAndCheckSetters> arrayList;
 
     FilterRecyclerViewAdapter(Context context, ArrayList<TextAndCheckSetters> arrayList) {
-        Context context1 = context;
         this.arrayList = arrayList;
     }
 
@@ -53,7 +52,7 @@ public class FilterRecyclerViewAdapter extends RecyclerView.Adapter<FilterRecycl
             super(itemView);
             cb_custom= (CheckBox) itemView.findViewById(R.id.cb_customRow_id);
             tv_text= (TextView) itemView.findViewById(R.id.tv_customRow_id);
-            pic = (ImageView) itemView.findViewById(R.id.profile_imageview);
+            pic = (ImageView) itemView.findViewById(R.id.imageview);
         }
     }
 

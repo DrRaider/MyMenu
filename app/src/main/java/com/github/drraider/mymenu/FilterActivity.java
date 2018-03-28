@@ -22,7 +22,7 @@ public class FilterActivity extends AppCompatActivity {
     TextAndCheckSetters textAndCheckSetters;        // Our Getter Setter class
     FilterRecyclerViewAdapter filterRecyclerViewAdapter;            // Adapter
 
-    public static final int picture = R.drawable.banana;
+    public int picture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,9 @@ public class FilterActivity extends AppCompatActivity {
                     JSONObject filter = filters.getJSONObject(i);
                     textAndCheckSetters = new TextAndCheckSetters();
                     textAndCheckSetters.setText(filter.getString("name"));
-                    textAndCheckSetters.setPictureResId(picture);
+                    textAndCheckSetters.setPictureResId(getResources().getIdentifier(
+                            filter.getString("img"), "drawable", getPackageName())
+                    );
                     arrayList.add(textAndCheckSetters);
                 }
             }
@@ -49,7 +51,7 @@ public class FilterActivity extends AppCompatActivity {
                 throw new Exception("Empty filter list");
             }
         } catch (JSONException e) {
-            Log.e("Exception : ", "Json reading error : ", e);
+            Log.e("Exception", " : ", e);
         } catch (Exception ex) {
             Log.e("Exception", " : ", ex);
         }

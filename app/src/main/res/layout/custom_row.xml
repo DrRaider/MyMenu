@@ -10,7 +10,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingRight="20dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
         android:background="#ffffff">
 
         <CheckBox
@@ -22,20 +23,21 @@
             />
 
         <ImageView
-            android:id="@+id/profile_imageview"
+            android:id="@+id/imageview"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:contentDescription="banana">
-        </ImageView>
+            android:contentDescription="@string/thumbnail" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#ffffff"
-            android:orientation="horizontal"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@id/imageview"
             android:layout_toStartOf="@id/cb_customRow_id"
-            android:layout_toEndOf="@id/profile_imageview">
+            android:background="#ffffff"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_customRow_id"

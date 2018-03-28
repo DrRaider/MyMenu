@@ -8,17 +8,17 @@
     {
       "id": "lactose",
       "name": "Lactose",
-      "img": "lait"
+      "img": "lactose"
     },
     {
       "id": "arachides",
       "name": "Arachides",
-      "img": "noix"
+      "img": "arachides"
     },
     {
       "id": "oeufs",
       "name": "Oeufs",
-      "img": "oeuf"
+      "img": "oeufs"
     }
   ]
 }

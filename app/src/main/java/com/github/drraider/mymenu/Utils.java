@@ -8,8 +8,8 @@ import org.json.JSONObject;
 
 import java.io.*;
 
-public class Utils {
-    public static JSONObject getJSon(Context context, String filename) {
+class Utils {
+    static JSONObject getJSon(Context context, String filename) {
         try {
 
             InputStream is = context.getAssets().open(filename);
@@ -23,10 +23,10 @@ public class Utils {
             return new JSONObject(new String(buffer, "UTF-8"));
 
         } catch (IOException ex) {
-            Log.e("Exception : ", "Json reading error : ", ex);
+            Log.e("Exception", " : ", ex);
             return null;
         } catch (JSONException e) {
-            Log.e("Exception : ", "Json reading error : ", e);
+            Log.e("Exception", " : ", e);
         }
         return null;
     }
