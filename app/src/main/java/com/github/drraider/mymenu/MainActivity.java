@@ -1,6 +1,7 @@
 package com.github.drraider.mymenu;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,16 +10,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-
-import android.content.Context;
 
 import android.widget.Toast;
 
 
-import com.github.drraider.mymenu.Filter.FilterActivity;
-import com.github.drraider.mymenu.Scanner.PortraitCaptureActivity;
+import com.github.drraider.mymenu.dialogfragment.EulaDialogFragment;
+import com.github.drraider.mymenu.filter.FilterActivity;
+import com.github.drraider.mymenu.scanner.PortraitCaptureActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -108,7 +107,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_eula) {
+            showDialog();
             return true;
         }
 
@@ -126,6 +126,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else { Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show(); }
 
         mBackPressed = System.currentTimeMillis();
+    }
+
+    void showDialog() {
+        DialogFragment newFragment = EulaDialogFragment.newInstance(1);
+        newFragment.show(getFragmentManager(), "dialog");
     }
 
 }

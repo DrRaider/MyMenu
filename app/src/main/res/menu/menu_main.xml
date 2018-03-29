@@ -4,9 +4,9 @@
     tools:context="com.github.drraider.mymenu.MainActivity">
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_eula"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/action_eula"
         app:showAsAction="never" />
 
 
