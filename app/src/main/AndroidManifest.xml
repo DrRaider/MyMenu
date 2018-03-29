@@ -23,16 +23,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Scanner.PortraitCaptureActivity"
+            android:name=".PortraitCaptureActivity"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
-            tools:replace="android:screenOrientation"
+            tools:replace="android:screenOrientation" 
             />
+        <activity android:name=".MenuDisplay" android:exported="true"/>
         <activity
             android:name=".Filter.FilterActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar"
             />
+
     </application>
 
 </manifest>

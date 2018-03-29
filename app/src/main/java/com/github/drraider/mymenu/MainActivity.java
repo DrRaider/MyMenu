@@ -9,8 +9,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import android.content.Context;
+
 import android.widget.Toast;
+
 
 import com.github.drraider.mymenu.Filter.FilterActivity;
 import com.github.drraider.mymenu.Scanner.PortraitCaptureActivity;
