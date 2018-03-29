@@ -1,6 +1,6 @@
 package com.github.drraider.mymenu.filter;
 
-public class TextAndCheckSetters {
+public class RecyclerViewGetSet {
     private String text;
     private boolean selected;
     private int pictureResId;
@@ -32,7 +32,7 @@ public class TextAndCheckSetters {
 
     @Override
     public String toString() {
-        return "TextAndCheckSetters{" +
+        return "RecyclerViewGetSet{" +
                 "text='" + text + '\'' +
                 ", selected=" + selected +
                 ", pictureResId=" + pictureResId +

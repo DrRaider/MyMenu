@@ -1,8 +1,4 @@
-package com.github.drraider.mymenu.model;
-
-/**
- * Created by Daniel on 26/03/2018.
- */
+package com.github.drraider.mymenu.menu;
 
 public class Dish {
 

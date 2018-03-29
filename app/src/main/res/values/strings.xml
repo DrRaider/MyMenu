@@ -8,4 +8,9 @@
     <string name="filter">Filter</string>
     <string name="thumbnail">thumbnail</string>
     <string name="done">Done</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="allergenes">Allergenes</string>
+    <string name="type">Type</string>
+    <string name="menu">Menu</string>
 </resources>

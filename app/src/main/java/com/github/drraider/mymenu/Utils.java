@@ -1,15 +1,17 @@
 package com.github.drraider.mymenu;
 
+import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.util.Log;
+
+import com.github.drraider.mymenu.dialogfragment.EulaDialogFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+
 
 public class Utils {
     public static JSONObject getJSon(Context context, String filename) {
@@ -34,7 +36,10 @@ public class Utils {
         return null;
     }
 
-
+    public static void showDialog(Activity activity) {
+        DialogFragment newFragment = EulaDialogFragment.newInstance(1);
+        newFragment.show(activity.getFragmentManager(), "dialog");
+    }
 
 
 

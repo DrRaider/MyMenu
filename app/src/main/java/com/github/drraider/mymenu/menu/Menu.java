@@ -1,9 +1,7 @@
-package com.github.drraider.mymenu.model;
+package com.github.drraider.mymenu.menu;
 import java.util.List;
 
-/**
- * Created by Daniel on 26/03/2018.
- */
+
 
 public class Menu {
 

@@ -15,9 +15,9 @@ import java.util.ArrayList;
 
 public class FilterRecyclerViewAdapter extends RecyclerView.Adapter<FilterRecyclerViewAdapter.MyViewHolder> {
 
-    private ArrayList<TextAndCheckSetters> arrayList;
+    private ArrayList<RecyclerViewGetSet> arrayList;
 
-    FilterRecyclerViewAdapter(ArrayList<TextAndCheckSetters> arrayList) {
+    FilterRecyclerViewAdapter(ArrayList<RecyclerViewGetSet> arrayList) {
         this.arrayList = arrayList;
     }
 

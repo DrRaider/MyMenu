@@ -25,8 +25,8 @@ import com.github.drraider.mymenu.Utils;
 public class FilterActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    ArrayList<TextAndCheckSetters> arrayList;
-    TextAndCheckSetters textAndCheckSetters;
+    ArrayList<RecyclerViewGetSet> arrayList;
+    RecyclerViewGetSet recyclerViewGetSet;
     FilterRecyclerViewAdapter filterRecyclerViewAdapter;
 
     @Override
@@ -46,12 +46,12 @@ public class FilterActivity extends AppCompatActivity {
                 arrayList = new ArrayList<>();
                 for(int i = 0; i < filters.length(); i++) {
                     JSONObject filter = filters.getJSONObject(i);
-                    textAndCheckSetters = new TextAndCheckSetters();
-                    textAndCheckSetters.setText(filter.getString("name"));
-                    textAndCheckSetters.setPictureResId(getResources().getIdentifier(
+                    recyclerViewGetSet = new RecyclerViewGetSet();
+                    recyclerViewGetSet.setText(filter.getString("name"));
+                    recyclerViewGetSet.setPictureResId(getResources().getIdentifier(
                             filter.getString("img"), "drawable", getPackageName())
                     );
-                    arrayList.add(textAndCheckSetters);
+                    arrayList.add(recyclerViewGetSet);
                 }
             }
             else {
@@ -87,8 +87,8 @@ public class FilterActivity extends AppCompatActivity {
             Intent intent = new Intent(FilterActivity.this, MainActivity.class);
             ArrayList<String> tmp = new ArrayList<>();
             for (int i = 0; i < arrayList.size(); i++ ) {
-                TextAndCheckSetters e = arrayList.get(i);
-                if (!e.getSelected())
+                RecyclerViewGetSet e = arrayList.get(i);
+                if (e.getSelected())
                     tmp.add(e.getText());
             }
             intent.putStringArrayListExtra("List", tmp);

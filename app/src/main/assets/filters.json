@@ -2,7 +2,7 @@
   "filters": [
     {
       "id": "gluten",
-      "name": "Gluten",
+      "name": "gluten",
       "img": "afdiag"
     },
     {
