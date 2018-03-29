@@ -5,6 +5,8 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,14 +25,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PortraitCaptureActivity"
+            android:name=".scanner.PortraitCaptureActivity"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
             tools:replace="android:screenOrientation" 
             />
         <activity android:name=".MenuDisplay" android:exported="true"/>
         <activity
-            android:name=".Filter.FilterActivity"
+            android:name=".filter.FilterActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar"
             />

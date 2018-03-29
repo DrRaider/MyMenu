@@ -1,4 +1,4 @@
-package com.github.drraider.mymenu.Filter;
+package com.github.drraider.mymenu.filter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

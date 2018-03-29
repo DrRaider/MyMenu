@@ -1,4 +1,4 @@
-package com.github.drraider.mymenu.Filter;
+package com.github.drraider.mymenu.filter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -88,7 +88,7 @@ public class FilterActivity extends AppCompatActivity {
             ArrayList<String> tmp = new ArrayList<>();
             for (int i = 0; i < arrayList.size(); i++ ) {
                 TextAndCheckSetters e = arrayList.get(i);
-                if (e.getSelected())
+                if (!e.getSelected())
                     tmp.add(e.getText());
             }
             intent.putStringArrayListExtra("List", tmp);

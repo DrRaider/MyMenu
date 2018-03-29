@@ -61,6 +61,16 @@
             android:layout_marginTop="15dp"
             android:text="@string/filter" />
 
+        <TextView
+            android:id="@+id/dataUrl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/redirectMenu"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:textAlignment="textStart" />
+
+
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

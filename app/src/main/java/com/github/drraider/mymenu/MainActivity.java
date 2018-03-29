@@ -9,20 +9,23 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-
-import android.content.Context;
 
 import android.widget.Toast;
 
+import java.io.InputStream;
+import java.net.URL;
+import java.net.HttpURLConnection;
 
-import com.github.drraider.mymenu.Filter.FilterActivity;
-import com.github.drraider.mymenu.Scanner.PortraitCaptureActivity;
+import com.github.drraider.mymenu.filter.FilterActivity;
+import com.github.drraider.mymenu.scanner.PortraitCaptureActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
+
+import com.github.drraider.mymenu.RetrieveFeedTask;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -90,6 +93,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 statusMessage.setText(R.string.barcode_success);
                 barcodeValue.setText(scanResult.getContents());
                 Log.d("SCAN", "Barcode read: " + scanResult.getContents());
+
+
+                String url = scanResult.getContents();
+                String result = null;
+                //String result = http_call(url);
+                AsyncHTTP task = new AsyncHTTP(this);
+                task.execute(url);
+
+                //TesterConnexionHTTP(url);
+                //Log.d("Data", "Data received: " + result);
+                //barcodeValue.setText(result);
+
+
             } else {
                 statusMessage.setText(R.string.barcode_failure);
                 Log.d("SCAN", "No barcode captured, intent data is null");
@@ -134,4 +150,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBackPressed = System.currentTimeMillis();
     }
 
+    public void TesterConnexionHTTP (String address) {
+        URL uneURL=null;
+        int ch;
+        try {
+            uneURL = new URL(address);
+            HttpURLConnection connexion = (HttpURLConnection)uneURL.openConnection();
+            InputStream flux = connexion.getInputStream();
+            barcodeValue.setText("Status de la connexion : " + connexion.getResponseMessage());
+
+            if (connexion.getResponseCode() == HttpURLConnection.HTTP_OK)
+                while ((ch=flux.read())!= -1)
+                    barcodeValue.setText((char) ch);
+
+            flux.close();
+            connexion.disconnect();
+        }
+        catch(Exception e) {
+            Log.d("Error connexion", e.toString());
+        }
+    }
 }

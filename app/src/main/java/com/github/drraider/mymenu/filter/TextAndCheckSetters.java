@@ -1,6 +1,4 @@
-package com.github.drraider.mymenu.Filter;
-
-import java.util.ArrayList;
+package com.github.drraider.mymenu.filter;
 
 public class TextAndCheckSetters {
     private String text;
