@@ -14,8 +14,9 @@ import com.github.drraider.mymenu.R;
 import com.github.drraider.mymenu.Utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
-
+import android.widget.Toast;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -42,21 +43,42 @@ public class MenuActivity extends AppCompatActivity {
             Dish dish = new Dish();
             dish.setName((obj.getJSONArray("values").get(0).toString()));
             dish.setDescription((obj.getJSONArray("values").get(1).toString()));
+
+            String allergenes[] = obj.getJSONArray("values").get(2).toString().split(",", 2);
+
+            Toast.makeText(getApplicationContext(), allergenes[0]+ " and " + allergenes[1],
+                    Toast.LENGTH_LONG).show();
+
             dish.setAllergenes((obj.getJSONArray("values").get(2).toString()));
             dish.setType((obj.getJSONArray("values").get(3).toString()));
             ArrayList<String> filters = getIntent().getStringArrayListExtra("filters");
+
             boolean test = false;
             for (String s: filters) {
-                if (Objects.equals("[\"" + s + "\"]", dish.getAllergenes())) {
-                    test = true;
-                    break;
+                for(String str: allergenes) {
+                    str = str.replace("\"", "");
+                    str = str.replace("[", "");
+                    str = str.replace("]", "");
+
+                    Log.d("TEEEEST", "Filters tested : " + s + ";" + str);
+                    if (Objects.equals(s.toLowerCase(), str.toLowerCase())) {
+                        test = true;
+                        break;
+                    }
                 }
             }
+
+
             if (!test) {
                 mName.setText(dish.getName());
                 mDescription.setText(dish.getDescription());
                 mAllergenes.setText(dish.getAllergenes());
                 mType.setText(dish.getType());
+            } else {
+                mName.setText("");
+                mDescription.setText("");
+                mAllergenes.setText("Ce plat contient des allergenes.");
+                mType.setText("");
             }
         } catch (JSONException e) {
             Log.e("exception", "Erreur dans la fonction OnCreate");

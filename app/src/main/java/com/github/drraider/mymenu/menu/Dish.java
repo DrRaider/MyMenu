@@ -12,7 +12,7 @@ public class Dish {
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.type = eraseJSonCharacter(type);
     }
 
     public String getName() {
@@ -20,7 +20,7 @@ public class Dish {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = eraseJSonCharacter(name);
     }
 
     public String getDescription() {
@@ -28,7 +28,7 @@ public class Dish {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = eraseJSonCharacter(description);
     }
 
     public String getAllergenes() {
@@ -36,7 +36,15 @@ public class Dish {
     }
 
     public void setAllergenes(String allergenes) {
-        this.allergenes = allergenes;
+        this.allergenes = eraseJSonCharacter(allergenes);
+    }
+
+    public String eraseJSonCharacter (String str) {
+        str = str.replace("\"", "");
+        str = str.replace("[", "");
+        str = str.replace("]", "");
+
+        return str;
     }
 
 }
