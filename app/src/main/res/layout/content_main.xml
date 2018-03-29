@@ -42,6 +42,7 @@
             android:text="@string/read_barcode" />
 
         <Button
+
             android:id="@+id/redirectMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,6 +50,15 @@
             android:layout_centerHorizontal="true"
             android:text="See menu" />
 
+
+        <Button
+            android:id="@+id/filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/read_barcode"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="@string/filter" />
 
     </RelativeLayout>
 

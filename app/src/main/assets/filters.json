@@ -1,0 +1,24 @@
+{
+  "filters": [
+    {
+      "id": "gluten",
+      "name": "Gluten",
+      "img": "afdiag"
+    },
+    {
+      "id": "lactose",
+      "name": "Lactose",
+      "img": "lactose"
+    },
+    {
+      "id": "arachides",
+      "name": "Arachides",
+      "img": "arachides"
+    },
+    {
+      "id": "oeufs",
+      "name": "Oeufs",
+      "img": "oeufs"
+    }
+  ]
+}
