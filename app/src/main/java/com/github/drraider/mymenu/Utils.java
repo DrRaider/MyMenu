@@ -7,6 +7,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class Utils {
     public static JSONObject getJSon(Context context, String filename) {
@@ -30,4 +33,9 @@ public class Utils {
         }
         return null;
     }
+
+
+
+
+
 }

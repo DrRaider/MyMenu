@@ -14,6 +14,9 @@ import android.widget.TextView;
 
 import android.widget.Toast;
 
+import java.io.InputStream;
+import java.net.URL;
+import java.net.HttpURLConnection;
 
 import com.github.drraider.mymenu.dialogfragment.EulaDialogFragment;
 import com.github.drraider.mymenu.filter.FilterActivity;
@@ -22,6 +25,8 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
+
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -45,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.read_barcode).setOnClickListener(this);
         findViewById(R.id.filter).setOnClickListener(this);
+        findViewById(R.id.redirectMenu).setOnClickListener(this);
+
     }
 
     @Override
@@ -65,6 +72,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(MainActivity.this, FilterActivity.class);
                 this.startActivityForResult(intent, 1);
                 break;
+            case R.id.redirectMenu:
+                Intent menuActivity = new Intent(MainActivity.this, MenuDisplay.class);
+                startActivity(menuActivity);
+                break;
         }
     }
 
@@ -83,6 +94,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 statusMessage.setText(R.string.barcode_success);
                 barcodeValue.setText(scanResult.getContents());
                 Log.d("SCAN", "Barcode read: " + scanResult.getContents());
+
+
+                String url = scanResult.getContents();
+                String result = null;
+                //String result = http_call(url);
+                AsyncHTTP task = new AsyncHTTP(this);
+                task.execute(url);
+
+                //TesterConnexionHTTP(url);
+                //Log.d("Data", "Data received: " + result);
+                //barcodeValue.setText(result);
+
+
             } else {
                 statusMessage.setText(R.string.barcode_failure);
                 Log.d("SCAN", "No barcode captured, intent data is null");
@@ -128,9 +152,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBackPressed = System.currentTimeMillis();
     }
 
+
     void showDialog() {
         DialogFragment newFragment = EulaDialogFragment.newInstance(1);
         newFragment.show(getFragmentManager(), "dialog");
     }
 
+
+    public void TesterConnexionHTTP (String address) {
+        URL uneURL=null;
+        int ch;
+        try {
+            uneURL = new URL(address);
+            HttpURLConnection connexion = (HttpURLConnection)uneURL.openConnection();
+            InputStream flux = connexion.getInputStream();
+            barcodeValue.setText("Status de la connexion : " + connexion.getResponseMessage());
+
+            if (connexion.getResponseCode() == HttpURLConnection.HTTP_OK)
+                while ((ch=flux.read())!= -1)
+                    barcodeValue.setText((char) ch);
+
+            flux.close();
+            connexion.disconnect();
+        }
+        catch(Exception e) {
+            Log.d("Error connexion", e.toString());
+        }
+    }
 }
