@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.read_barcode).setOnClickListener(this);
         findViewById(R.id.filter).setOnClickListener(this);
+        findViewById(R.id.redirectMenu).setOnClickListener(this);
+
     }
 
     @Override
@@ -65,6 +67,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.i("Filter", "clicked on filter activity");
                 Intent intent = new Intent(MainActivity.this, FilterActivity.class);
                 this.startActivityForResult(intent, 1);
+                break;
+            case R.id.redirectMenu:
+                Intent menuActivity = new Intent(MainActivity.this, MenuDisplay.class);
+                startActivity(menuActivity);
                 break;
         }
     }
