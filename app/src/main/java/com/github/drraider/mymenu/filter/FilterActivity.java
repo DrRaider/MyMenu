@@ -128,43 +128,11 @@ public class FilterActivity extends AppCompatActivity {
             Log.e("Error read only", e.getMessage());
             Toast.makeText(getBaseContext(), "Error read only : " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
-
-
     }
 
 
     public void loadData () {
-        try {
-            JSONObject obj = new JSONObject(getJSon());
-
-            //to do
-
-        } catch (JSONException e) {
-            Log.e("exception", "Erreur dans la fonction OnCreate");
-            e.printStackTrace();
-        }
+        JSONObject obj = Utils.getJSon(this, "saved_filters.json");
+        //to do
     }
-
-
-    public String getJSon() {
-
-        String json = null;
-        try {
-            InputStream is = getAssets().open("saved_filters.json");
-            int size = is.available();
-
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            Log.e("exception", "Erreur dans la fonction getJSon");
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
-
-
 }
