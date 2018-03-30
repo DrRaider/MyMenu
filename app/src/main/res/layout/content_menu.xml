@@ -54,6 +54,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/MenuDisplay_allergenes_dish"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MenuDisplay_name_dish" />
 
@@ -62,7 +63,7 @@
         android:id="@+id/MenuDisplay_allergenes_dish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="68dp"
         android:layout_marginEnd="163dp"
         android:layout_marginStart="162dp"
         android:layout_weight="2"
@@ -73,7 +74,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/MenuDisplay_type_dish"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent" />
 
 

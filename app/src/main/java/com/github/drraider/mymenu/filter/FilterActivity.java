@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import android.support.v7.widget.Toolbar;
@@ -21,6 +22,13 @@ import android.view.MenuItem;
 import com.github.drraider.mymenu.MainActivity;
 import com.github.drraider.mymenu.R;
 import com.github.drraider.mymenu.Utils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import android.content.Context;
+import android.widget.Toast;
+
+import java.io.*;
 
 public class FilterActivity extends AppCompatActivity {
 
@@ -90,7 +98,9 @@ public class FilterActivity extends AppCompatActivity {
                 RecyclerViewGetSet e = arrayList.get(i);
                 if (e.getSelected())
                     tmp.add(e.getText());
+
             }
+            saveData(tmp);
             intent.putStringArrayListExtra("List", tmp);
             setResult(Activity.RESULT_OK, intent);
             finish();
@@ -98,5 +108,62 @@ public class FilterActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void saveData (ArrayList data) {
+
+        JSONArray arrayToSave = new JSONArray();
+        arrayToSave.put(data);
+
+        try {
+            Writer output = null;
+            File file = new File("saved_filters.json");
+            output = new BufferedWriter(new FileWriter(file));
+            output.write(arrayToSave.toString());
+            output.close();
+            Toast.makeText(getApplicationContext(), "Filters saved", Toast.LENGTH_LONG).show();
+
+        } catch (Exception e) {
+            Log.e("Error read only", e.getMessage());
+            Toast.makeText(getBaseContext(), "Error read only : " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+
+    }
+
+
+    public void loadData () {
+        try {
+            JSONObject obj = new JSONObject(getJSon());
+
+            //to do
+
+        } catch (JSONException e) {
+            Log.e("exception", "Erreur dans la fonction OnCreate");
+            e.printStackTrace();
+        }
+    }
+
+
+    public String getJSon() {
+
+        String json = null;
+        try {
+            InputStream is = getAssets().open("saved_filters.json");
+            int size = is.available();
+
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            Log.e("exception", "Erreur dans la fonction getJSon");
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+
 
 }
