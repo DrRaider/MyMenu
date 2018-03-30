@@ -12,26 +12,20 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="551dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="6dp"
         android:background="#ffffff"
         android:paddingEnd="20dp"
         android:paddingStart="20dp"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="4dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
 
         <TextView
-            android:id="@+id/test2"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/test1"
-            android:layout_marginTop="47dp"
-            android:text="TextView"
-            tools:layout_editor_absoluteX="27dp"
-            tools:layout_editor_absoluteY="148dp" />
-
-        <TextView
-            android:id="@+id/test1"
+            android:id="@+id/MenuDisplay_name_dish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -43,24 +37,36 @@
             tools:layout_editor_absoluteY="47dp" />
 
         <TextView
-            android:id="@+id/test3"
+            android:id="@+id/MenuDisplay_description_dish"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/test2"
+            android:layout_below="@+id/MenuDisplay_name_dish"
+            android:layout_marginTop="47dp"
+            android:text="TextView"
+            tools:layout_editor_absoluteX="27dp"
+            tools:layout_editor_absoluteY="148dp" />
+
+        <TextView
+            android:id="@+id/MenuDisplay_allergenes_dish"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/MenuDisplay_description_dish"
             android:layout_marginTop="31dp"
             android:text="TextView"
             tools:layout_editor_absoluteX="27dp"
             tools:layout_editor_absoluteY="648dp" />
 
         <TextView
-            android:id="@+id/test4"
+            android:id="@+id/MenuDisplay_type_dish"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/test3"
+            android:layout_below="@+id/MenuDisplay_allergenes_dish"
             android:layout_marginTop="36dp"
             android:text="TextView"
             tools:layout_editor_absoluteX="27dp"

@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import com.github.drraider.mymenu.R;
 import com.github.drraider.mymenu.Utils;
+import com.github.drraider.mymenu.filter.RecyclerViewGetSet;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,10 +23,17 @@ import android.widget.Toast;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private TextView mName;
+    /*private TextView mName;
     private TextView mDescription;
     private TextView mAllergenes;
-    private TextView mType;
+    private TextView mType;*/
+
+    private Menu menuOfZeDay;
+
+    RecyclerView recyclerView;
+    ArrayList<RecyclerViewGetSet> recyclerArrayList;
+    RecyclerViewGetSet recyclerViewGetSet;
+    MenuRecyclerViewAdapter filterRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,50 +42,32 @@ public class MenuActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final RecyclerView rv = (RecyclerView) findViewById(R.id.menu_list);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(new MenuRecyclerViewAdapter());
-
-
-
-        /*
-        mName = (TextView) findViewById(R.id.MenuDisplay_name_dish);
-        mDescription = (TextView) findViewById(R.id.MenuDisplay_description_dish);
-        mAllergenes = (TextView) findViewById(R.id.MenuDisplay_allergenes_dish);
-        mType = (TextView) findViewById(R.id.MenuDisplay_type_dish);
-        */
+        menuOfZeDay = new Menu();
 
         try {
             JSONObject obj = new JSONObject(getIntent().getStringExtra("obj"));
-            Dish dish = new Dish();
-            dish.setName((obj.getJSONArray("values").get(0).toString()));
-            dish.setDescription((obj.getJSONArray("values").get(1).toString()));
 
-            String allergenes[] = obj.getJSONArray("values").get(2).toString().split(",", 2);
+            for (int j = 0 ; j < obj.length(); j++) {
 
-            Toast.makeText(getApplicationContext(), allergenes[0]+ " and " + allergenes[1],
-                    Toast.LENGTH_LONG).show();
+                Dish dish = new Dish();
+                dish.setName((obj.getJSONArray("values").get(0).toString()));
+                dish.setDescription((obj.getJSONArray("values").get(1).toString()));
 
-            dish.setAllergenes((obj.getJSONArray("values").get(2).toString()));
-            dish.setType((obj.getJSONArray("values").get(3).toString()));
-            ArrayList<String> filters = getIntent().getStringArrayListExtra("filters");
+                //Toast.makeText(getApplicationContext(), allergenes[0]+ " and " + allergenes[1],
+                //Toast.LENGTH_LONG).show();
 
-            boolean test = false;
-            for (String s: filters) {
-                for(String str: allergenes) {
-                    str = str.replace("\"", "");
-                    str = str.replace("[", "");
-                    str = str.replace("]", "");
+                dish.setAllergenes((obj.getJSONArray("values").get(2).toString()));
+                dish.setType((obj.getJSONArray("values").get(3).toString()));
+                dish.setFilters(getIntent().getStringArrayListExtra("filters"));
 
-                    Log.d("TEEEEST", "Filters tested : " + s + ";" + str);
-                    if (Objects.equals(s.toLowerCase(), str.toLowerCase())) {
-                        test = true;
-                        break;
-                    }
-                }
+                menuOfZeDay.addDish(dish);
+
             }
 
+            recyclerArrayList = new ArrayList<>();
+            recyclerView = (RecyclerView) findViewById(R.id.filter_list);
 
+/*
             if (!test) {
                 mName.setText(dish.getName());
                 mDescription.setText(dish.getDescription());
@@ -88,11 +78,14 @@ public class MenuActivity extends AppCompatActivity {
                 mDescription.setText("");
                 mAllergenes.setText("Ce plat contient des allergenes.");
                 mType.setText("");
-            }
+            }*/
+
         } catch (JSONException e) {
             Log.e("exception", "Erreur dans la fonction OnCreate");
             e.printStackTrace();
         }
+
+
 
     }
     @Override
