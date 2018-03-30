@@ -117,7 +117,8 @@ public class FilterActivity extends AppCompatActivity {
 
         try {
             Writer output = null;
-            File file = new File("saved_filters.json");
+            String filePath = this.getFilesDir().getPath() +"/saved_filters.json";
+            File file = new File(filePath);
             output = new BufferedWriter(new FileWriter(file));
             output.write(arrayToSave.toString());
             output.close();
