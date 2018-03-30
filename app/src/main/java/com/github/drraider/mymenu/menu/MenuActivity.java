@@ -1,5 +1,7 @@
 package com.github.drraider.mymenu.menu;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.*;
@@ -32,11 +34,18 @@ public class MenuActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final RecyclerView rv = (RecyclerView) findViewById(R.id.menu_list);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setAdapter(new MenuRecyclerViewAdapter());
+
+
+
+        /*
         mName = (TextView) findViewById(R.id.MenuDisplay_name_dish);
         mDescription = (TextView) findViewById(R.id.MenuDisplay_description_dish);
         mAllergenes = (TextView) findViewById(R.id.MenuDisplay_allergenes_dish);
         mType = (TextView) findViewById(R.id.MenuDisplay_type_dish);
-
+        */
 
         try {
             JSONObject obj = new JSONObject(getIntent().getStringExtra("obj"));

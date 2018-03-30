@@ -19,6 +19,7 @@
         android:textSize="40sp"
         android:textStyle="bold" />
 
+    <!--
     <TextView
         android:id="@+id/MenuDisplay_name_dish"
         android:layout_width="wrap_content"
@@ -54,7 +55,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/MenuDisplay_allergenes_dish"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.33"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MenuDisplay_name_dish" />
 
@@ -74,7 +75,6 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/MenuDisplay_type_dish"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent" />
 
 
@@ -97,6 +97,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MenuDisplay_header"
         app:layout_constraintVertical_bias="1.0" />
+-->
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/menu_list"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 
 </android.support.constraint.ConstraintLayout>
