@@ -36,7 +36,6 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
         holder.mDescription.setText(arrayList.get(position).getDescription());
         holder.mAllergenes.setText(arrayList.get(position).getAllergenes());
         holder.mType.setText(arrayList.get(position).getType());
-
     }
 
     @Override

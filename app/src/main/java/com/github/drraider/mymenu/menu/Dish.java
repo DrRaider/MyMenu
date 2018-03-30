@@ -14,6 +14,11 @@ public class Dish {
     private boolean authorized;
     private ArrayList<String> filters;
 
+    public Dish() {
+        authorized = true;
+        filters = new ArrayList<String>();
+    }
+
     public boolean isAuthorized() {
         return authorized;
     }
@@ -77,9 +82,10 @@ public class Dish {
 
     public void checkAllergenes () {
 
+        Log.d("Test allergenes", "All alergenes are being tested");
+
         String allergenes_array[] = allergenes.split(",", 2);
 
-        boolean test = false;
         try {
             for (String s: filters) {
                 for(String str: allergenes_array) {
@@ -87,16 +93,12 @@ public class Dish {
                     str = str.replace("[", "");
                     str = str.replace("]", "");
 
+                    Log.d("Test allergenes", "Allergenes tested : " + s.toLowerCase() + " ; " + str.toLowerCase());
                     if (Objects.equals(s.toLowerCase(), str.toLowerCase())) {
-                        test = true;
+                        authorized = false;
+                        break;
                     }
                 }
-            }
-
-            if (!test) {
-                authorized = true;
-            } else {
-                authorized = false;
             }
         } catch (Exception e) {
             Log.e("Error", e.toString());

@@ -58,10 +58,10 @@ public class MenuActivity extends AppCompatActivity {
 
                 dish.setName(namesArray.get(j).toString());
                 dish.setDescription(descriptionsArray.get(j).toString());
+                dish.setFilters(getIntent().getStringArrayListExtra("filters"));
                 dish.setAllergenes(allergenesArray.get(j).toString());
                 dish.setType(typesArray.get(j).toString());
 
-                dish.setFilters(getIntent().getStringArrayListExtra("filters"));
 
                 menuOfZeDay.addDish(dish);
             }
