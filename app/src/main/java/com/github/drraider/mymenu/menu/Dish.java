@@ -28,6 +28,7 @@ public class Dish {
 
     public void setType(String type) {
         this.type = eraseJSonCharacter(type);
+        Log.d("Dish type : ", this.type);
     }
 
     public String getName() {
@@ -36,6 +37,7 @@ public class Dish {
 
     public void setName(String name) {
         this.name = eraseJSonCharacter(name);
+        Log.d("Dish Name : ", this.name);
     }
 
     public String getDescription() {
@@ -44,6 +46,7 @@ public class Dish {
 
     public void setDescription(String description) {
         this.description = eraseJSonCharacter(description);
+        Log.d("Dish description : ", this.description);
     }
 
     public ArrayList<String> getFilters() {
@@ -59,7 +62,9 @@ public class Dish {
     }
 
     public void setAllergenes(String allergenes) {
-        this.allergenes = allergenes;
+        this.allergenes = eraseJSonCharacter(allergenes);
+        Log.d("Dish allergenes : ", this.allergenes);
+        checkAllergenes();
     }
 
     public String eraseJSonCharacter (String str) {
@@ -75,23 +80,28 @@ public class Dish {
         String allergenes_array[] = allergenes.split(",", 2);
 
         boolean test = false;
-        for (String s: filters) {
-            for(String str: allergenes_array) {
-                str = str.replace("\"", "");
-                str = str.replace("[", "");
-                str = str.replace("]", "");
+        try {
+            for (String s: filters) {
+                for(String str: allergenes_array) {
+                    str = str.replace("\"", "");
+                    str = str.replace("[", "");
+                    str = str.replace("]", "");
 
-                if (Objects.equals(s.toLowerCase(), str.toLowerCase())) {
-                    test = true;
+                    if (Objects.equals(s.toLowerCase(), str.toLowerCase())) {
+                        test = true;
+                    }
                 }
             }
+
+            if (!test) {
+                authorized = true;
+            } else {
+                authorized = false;
+            }
+        } catch (Exception e) {
+            Log.e("Error", e.toString());
         }
 
-        if (!test) {
-            authorized = true;
-        } else {
-            authorized = false;
-        }
     }
 
 }

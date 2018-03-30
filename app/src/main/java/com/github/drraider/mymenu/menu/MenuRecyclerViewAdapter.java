@@ -17,7 +17,11 @@ import java.util.ArrayList;
 
 public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerViewAdapter.MyViewHolder> {
 
-    private ArrayList<RecyclerViewGetSet> arrayList;
+    private ArrayList<Dish> arrayList;
+
+    MenuRecyclerViewAdapter(ArrayList<Dish> arrayList) {
+        this.arrayList = arrayList;
+    }
 
     @Override
     public MenuRecyclerViewAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -28,10 +32,10 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
     @Override
     public void onBindViewHolder(final MenuRecyclerViewAdapter.MyViewHolder holder, final int position) {
 
-        holder.mName.setText(arrayList.get(position).getText());
-        holder.mDescription.setText(arrayList.get(position).getText());
-        holder.mAllergenes.setText(arrayList.get(position).getText());
-        holder.mType.setText(arrayList.get(position).getText());
+        holder.mName.setText(arrayList.get(position).getName());
+        holder.mDescription.setText(arrayList.get(position).getDescription());
+        holder.mAllergenes.setText(arrayList.get(position).getAllergenes());
+        holder.mType.setText(arrayList.get(position).getType());
 
     }
 

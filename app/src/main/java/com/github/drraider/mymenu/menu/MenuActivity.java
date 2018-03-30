@@ -11,6 +11,7 @@ import android.os.Bundle;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONArray;
 
 import com.github.drraider.mymenu.R;
 import com.github.drraider.mymenu.Utils;
@@ -31,63 +32,53 @@ public class MenuActivity extends AppCompatActivity {
     private Menu menuOfZeDay;
 
     RecyclerView recyclerView;
-    ArrayList<RecyclerViewGetSet> recyclerArrayList;
-    RecyclerViewGetSet recyclerViewGetSet;
-    MenuRecyclerViewAdapter filterRecyclerViewAdapter;
+    MenuRecyclerViewAdapter menuRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        recyclerView = findViewById(R.id.menu_list);
 
         menuOfZeDay = new Menu();
 
         try {
             JSONObject obj = new JSONObject(getIntent().getStringExtra("obj"));
 
-            for (int j = 0 ; j < obj.length(); j++) {
+            JSONArray namesArray = new JSONArray(obj.getJSONArray("values").get(0).toString());
+            JSONArray descriptionsArray = new JSONArray(obj.getJSONArray("values").get(1).toString());
+            JSONArray allergenesArray = new JSONArray(obj.getJSONArray("values").get(2).toString());
+            JSONArray typesArray = new JSONArray(obj.getJSONArray("values").get(3).toString());
+
+            for (int j = 0; j <= obj.length(); j++) {
 
                 Dish dish = new Dish();
-                dish.setName((obj.getJSONArray("values").get(0).toString()));
-                dish.setDescription((obj.getJSONArray("values").get(1).toString()));
 
-                //Toast.makeText(getApplicationContext(), allergenes[0]+ " and " + allergenes[1],
-                //Toast.LENGTH_LONG).show();
+                dish.setName(namesArray.get(j).toString());
+                dish.setDescription(descriptionsArray.get(j).toString());
+                dish.setAllergenes(allergenesArray.get(j).toString());
+                dish.setType(typesArray.get(j).toString());
 
-                dish.setAllergenes((obj.getJSONArray("values").get(2).toString()));
-                dish.setType((obj.getJSONArray("values").get(3).toString()));
                 dish.setFilters(getIntent().getStringArrayListExtra("filters"));
 
                 menuOfZeDay.addDish(dish);
-
             }
+            menuOfZeDay.showDishList();
+            menuOfZeDay.generateSafeDishList();
 
-            recyclerArrayList = new ArrayList<>();
-            recyclerView = (RecyclerView) findViewById(R.id.filter_list);
-
-/*
-            if (!test) {
-                mName.setText(dish.getName());
-                mDescription.setText(dish.getDescription());
-                mAllergenes.setText(dish.getAllergenes());
-                mType.setText(dish.getType());
-            } else {
-                mName.setText("");
-                mDescription.setText("");
-                mAllergenes.setText("Ce plat contient des allergenes.");
-                mType.setText("");
-            }*/
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MenuActivity.this);
+            recyclerView.setLayoutManager(linearLayoutManager);
+            menuRecyclerViewAdapter = new MenuRecyclerViewAdapter(menuOfZeDay.getSafeDishList());
+            recyclerView.setAdapter(menuRecyclerViewAdapter);
 
         } catch (JSONException e) {
             Log.e("exception", "Erreur dans la fonction OnCreate");
             e.printStackTrace();
         }
-
-
-
     }
+
     @Override
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
