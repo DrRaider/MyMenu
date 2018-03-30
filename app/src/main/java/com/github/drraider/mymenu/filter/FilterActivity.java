@@ -12,6 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.lang.reflect.Array;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 import android.support.v7.widget.Toolbar;
@@ -52,9 +53,19 @@ public class FilterActivity extends AppCompatActivity {
             if (obj != null) {
                 JSONArray filters = obj.getJSONArray("filters");
                 arrayList = new ArrayList<>();
+
+                JSONArray savedFilters = loadData();
+
                 for(int i = 0; i < filters.length(); i++) {
                     JSONObject filter = filters.getJSONObject(i);
                     recyclerViewGetSet = new RecyclerViewGetSet();
+
+                    for (int j = 0 ; j < savedFilters.length(); j++)  {
+                        if (savedFilters.get(j).equals(filter.getString("name"))) {
+                            recyclerViewGetSet.setSelected(true);
+                        }
+                    }
+
                     recyclerViewGetSet.setText(filter.getString("name"));
                     recyclerViewGetSet.setPictureResId(getResources().getIdentifier(
                             filter.getString("img"), "drawable", getPackageName())
@@ -82,7 +93,6 @@ public class FilterActivity extends AppCompatActivity {
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -109,30 +119,70 @@ public class FilterActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void saveData (ArrayList<String> data) {
 
-    public void saveData (ArrayList data) {
-
-        JSONArray arrayToSave = new JSONArray();
-        arrayToSave.put(data);
-
+        String filePath = this.getFilesDir().getPath() +"/saved_filters.json";
         try {
-            Writer output = null;
-            String filePath = this.getFilesDir().getPath() +"/saved_filters.json";
-            File file = new File(filePath);
-            output = new BufferedWriter(new FileWriter(file));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(openFileOutput("saved_filters.json", Context.MODE_PRIVATE));
+            outputStreamWriter.write(data.toString());
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+            Toast.makeText(getBaseContext(), "Exception : " + "File write failed: " + e.toString(), Toast.LENGTH_LONG).show();
+
+        }
+
+
+        /*
+        JSONArray arrayToSave = new JSONArray(data);
+        //arrayToSave.put( ,data);
+
+
+        String filePath = this.getFilesDir().getPath() +"/saved_filters.json";
+
+        File file = new File(filePath);
+
+        try(Writer output = new BufferedWriter(new FileWriter(file))) {
+*/
+            /*
+            String check_empty = new String(output.toString());
+
+            if (check_empty.equals("") || check_empty.equals(null)) {
+                output.write("");
+            }  */
+/*
             output.write(arrayToSave.toString());
-            output.close();
-            Toast.makeText(getApplicationContext(), "Filters saved", Toast.LENGTH_LONG).show();
+
+            Toast.makeText(getBaseContext(), "To save : " + arrayToSave.toString(), Toast.LENGTH_LONG).show();
+
+            //check_empty = new String(output.toString());
 
         } catch (Exception e) {
             Log.e("Error read only", e.getMessage());
             Toast.makeText(getBaseContext(), "Error read only : " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
+        */
+
+
+
+
+
     }
 
+    public JSONArray loadData () {
 
-    public void loadData () {
-        JSONObject obj = Utils.getJSon(this, "saved_filters.json");
-        //to do
+        String data = Utils.loadSavedFilters(this);
+
+        Toast.makeText(this, "Data read : " + data, Toast.LENGTH_LONG).show();
+        JSONArray dataArray = null;
+        try {
+             dataArray = new JSONArray(data);
+        } catch (JSONException e) {
+            Log.e("Exception", e.toString());
+        }
+
+        return dataArray;
+
     }
 }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.github.drraider.mymenu.dialogfragment.EulaDialogFragment;
 
@@ -21,8 +22,15 @@ public class Utils {
             int size = is.available();
             byte[] buffer = new byte[size];
 
+            BufferedReader content = new BufferedReader(new InputStreamReader(is));
+
             if(is.read(buffer) != size)
                 throw new IOException("Couldn't read Json file");
+
+            if (filename.equals("saved_filters.json") && (!content.toString().equals("") && !content.toString().equals(null))) {
+                //return null;
+                //Toast.makeText(context, "Content file : " + content.toString(), Toast.LENGTH_LONG).show();
+            }
 
             is.close();
             return new JSONObject(new String(buffer, "UTF-8"));
@@ -34,6 +42,35 @@ public class Utils {
             Log.e("Exception", " : ", e);
         }
         return null;
+    }
+
+    public static String loadSavedFilters (Context context) {
+        String ret = "";
+
+        try {
+            InputStream inputStream = context.openFileInput("saved_filters.json");
+
+            if (inputStream != null) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+
+        return ret;
     }
 
     public static void showDialog(Activity activity) {
