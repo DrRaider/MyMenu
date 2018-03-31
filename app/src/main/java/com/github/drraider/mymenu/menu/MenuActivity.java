@@ -15,12 +15,7 @@ import org.json.JSONArray;
 
 import com.github.drraider.mymenu.R;
 import com.github.drraider.mymenu.Utils;
-import com.github.drraider.mymenu.filter.RecyclerViewGetSet;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
-import android.widget.Toast;
 
 public class MenuActivity extends AppCompatActivity {
 

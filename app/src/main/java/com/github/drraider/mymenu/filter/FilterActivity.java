@@ -54,7 +54,7 @@ public class FilterActivity extends AppCompatActivity {
                 JSONArray filters = obj.getJSONArray("filters");
                 arrayList = new ArrayList<>();
 
-                JSONArray savedFilters = loadData();
+                JSONArray savedFilters = loadData(this);
 
                 for(int i = 0; i < filters.length(); i++) {
                     JSONObject filter = filters.getJSONObject(i);
@@ -119,6 +119,24 @@ public class FilterActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public static ArrayList JSonParserToArrayList(JSONArray jsonArray) {
+
+        ArrayList<String> listdata = new ArrayList<String>();
+
+        try {
+            if (jsonArray != null) {
+                for (int i=0; i < jsonArray.length(); i++){
+                    listdata.add(jsonArray.getString(i));
+                }
+            }
+        } catch (JSONException e) {
+            Log.e("Error", e.toString(), e);
+        }
+
+        return listdata;
+
+    }
+
     public void saveData (ArrayList<String> data) {
 
         String filePath = this.getFilesDir().getPath() +"/saved_filters.json";
@@ -170,11 +188,11 @@ public class FilterActivity extends AppCompatActivity {
 
     }
 
-    public JSONArray loadData () {
+    public static JSONArray loadData (Context context) {
 
-        String data = Utils.loadSavedFilters(this);
+        String data = Utils.loadSavedFilters(context);
 
-        Toast.makeText(this, "Data read : " + data, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Data read : " + data, Toast.LENGTH_LONG).show();
         JSONArray dataArray = null;
         try {
              dataArray = new JSONArray(data);

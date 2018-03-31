@@ -20,8 +20,13 @@ import com.github.drraider.mymenu.scanner.PortraitCaptureActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
+
+import static com.github.drraider.mymenu.filter.FilterActivity.JSonParserToArrayList;
+import static com.github.drraider.mymenu.filter.FilterActivity.loadData;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -44,6 +49,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.read_barcode).setOnClickListener(this);
         findViewById(R.id.filter).setOnClickListener(this);
+
+
+        JSONArray savedFilters = loadData(this);
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putStringArrayListExtra("List",  JSonParserToArrayList(savedFilters));
 
     }
 
