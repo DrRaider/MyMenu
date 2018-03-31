@@ -22,15 +22,8 @@ public class Utils {
             int size = is.available();
             byte[] buffer = new byte[size];
 
-            BufferedReader content = new BufferedReader(new InputStreamReader(is));
-
             if(is.read(buffer) != size)
                 throw new IOException("Couldn't read Json file");
-
-            if (filename.equals("saved_filters.json") && (!content.toString().equals("") && !content.toString().equals(null))) {
-                //return null;
-                //Toast.makeText(context, "Content file : " + content.toString(), Toast.LENGTH_LONG).show();
-            }
 
             is.close();
             return new JSONObject(new String(buffer, "UTF-8"));
@@ -44,16 +37,16 @@ public class Utils {
         return null;
     }
 
-    public static String loadSavedFilters (Context context) {
+    public static String loadSavedFilters (Context context, String file) {
         String ret = "";
 
         try {
-            InputStream inputStream = context.openFileInput("saved_filters.json");
+            InputStream inputStream = context.openFileInput(file);
 
             if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
+                String receiveString;
                 StringBuilder stringBuilder = new StringBuilder();
 
                 while ( (receiveString = bufferedReader.readLine()) != null ) {

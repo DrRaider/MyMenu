@@ -12,14 +12,9 @@ public class Menu {
     private ArrayList<Dish> mDishList;
     private ArrayList<Dish> mSafeDishList;
 
-    public Menu(ArrayList<Dish> DishList) {
-        mDishList = DishList;
-        mSafeDishList = new ArrayList<Dish>();
-    }
-
-    public Menu() {
-        mDishList = new ArrayList<Dish>();
-        mSafeDishList = new ArrayList<Dish>();
+    Menu() {
+        mDishList = new ArrayList<>();
+        mSafeDishList = new ArrayList<>();
     }
 
     public void addDish (Dish data) {
@@ -53,7 +48,4 @@ public class Menu {
         return mSafeDishList;
     }
 
-    public void setSafeDishList(ArrayList<Dish> safeDishList) {
-        mSafeDishList = safeDishList;
-    }
 }

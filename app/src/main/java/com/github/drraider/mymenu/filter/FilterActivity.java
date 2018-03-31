@@ -59,10 +59,11 @@ public class FilterActivity extends AppCompatActivity {
                 for(int i = 0; i < filters.length(); i++) {
                     JSONObject filter = filters.getJSONObject(i);
                     recyclerViewGetSet = new RecyclerViewGetSet();
-
-                    for (int j = 0 ; j < savedFilters.length(); j++)  {
-                        if (savedFilters.get(j).equals(filter.getString("name"))) {
-                            recyclerViewGetSet.setSelected(true);
+                    if (savedFilters != null) {
+                        for (int j = 0; j < savedFilters.length(); j++) {
+                            if (savedFilters.get(j).equals(filter.getString("name"))) {
+                                recyclerViewGetSet.setSelected(true);
+                            }
                         }
                     }
 
@@ -119,9 +120,9 @@ public class FilterActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static ArrayList JSonParserToArrayList(JSONArray jsonArray) {
+    public static ArrayList<String> JSonParserToArrayList(JSONArray jsonArray) {
 
-        ArrayList<String> listdata = new ArrayList<String>();
+        ArrayList<String> listdata = new ArrayList<>();
 
         try {
             if (jsonArray != null) {
@@ -138,8 +139,6 @@ public class FilterActivity extends AppCompatActivity {
     }
 
     public void saveData (ArrayList<String> data) {
-
-        String filePath = this.getFilesDir().getPath() +"/saved_filters.json";
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(openFileOutput("saved_filters.json", Context.MODE_PRIVATE));
             outputStreamWriter.write(data.toString());
@@ -150,49 +149,11 @@ public class FilterActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "Exception : " + "File write failed: " + e.toString(), Toast.LENGTH_LONG).show();
 
         }
-
-
-        /*
-        JSONArray arrayToSave = new JSONArray(data);
-        //arrayToSave.put( ,data);
-
-
-        String filePath = this.getFilesDir().getPath() +"/saved_filters.json";
-
-        File file = new File(filePath);
-
-        try(Writer output = new BufferedWriter(new FileWriter(file))) {
-*/
-            /*
-            String check_empty = new String(output.toString());
-
-            if (check_empty.equals("") || check_empty.equals(null)) {
-                output.write("");
-            }  */
-/*
-            output.write(arrayToSave.toString());
-
-            Toast.makeText(getBaseContext(), "To save : " + arrayToSave.toString(), Toast.LENGTH_LONG).show();
-
-            //check_empty = new String(output.toString());
-
-        } catch (Exception e) {
-            Log.e("Error read only", e.getMessage());
-            Toast.makeText(getBaseContext(), "Error read only : " + e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-        */
-
-
-
-
-
     }
 
     public static JSONArray loadData (Context context) {
 
-        String data = Utils.loadSavedFilters(context);
-
-        Toast.makeText(context, "Data read : " + data, Toast.LENGTH_LONG).show();
+        String data = Utils.loadSavedFilters(context, "saved_filters.json");
         JSONArray dataArray = null;
         try {
              dataArray = new JSONArray(data);

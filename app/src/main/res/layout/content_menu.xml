@@ -8,24 +8,28 @@
     tools:context="com.github.drraider.mymenu.menu.MenuActivity"
     tools:showIn="@layout/activity_menu">
 
-    <TextView
-        android:id="@+id/MenuDisplay_header"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:gravity="center"
-        android:text="@string/menu"
-        android:textColor="@color/colorPrimary"
-        android:textSize="40sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/MenuDisplay_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/menu"
+            android:textColor="@color/colorPrimary"
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/menu_list"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/menu_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_below="@id/MenuDisplay_header"
+                />
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

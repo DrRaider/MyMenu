@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.drraider.mymenu.R;
-import com.github.drraider.mymenu.filter.RecyclerViewGetSet;
 
 import java.util.ArrayList;
 
@@ -25,7 +24,7 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
 
     @Override
     public MenuRecyclerViewAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.custome_menu,parent,false);
+        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_menu,parent,false);
         return new MenuRecyclerViewAdapter.MyViewHolder(v);
     }
 

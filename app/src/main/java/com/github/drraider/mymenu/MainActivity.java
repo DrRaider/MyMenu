@@ -10,13 +10,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
 import android.widget.Toast;
 
 import com.github.drraider.mymenu.filter.FilterActivity;
 import com.github.drraider.mymenu.menu.MenuActivity;
 import com.github.drraider.mymenu.scanner.AsyncHTTP;
 import com.github.drraider.mymenu.scanner.PortraitCaptureActivity;
+
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -25,8 +25,6 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-import static com.github.drraider.mymenu.filter.FilterActivity.JSonParserToArrayList;
-import static com.github.drraider.mymenu.filter.FilterActivity.loadData;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -45,15 +43,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        statusMessage = (TextView)findViewById(R.id.status_message);
+        statusMessage = (TextView) findViewById(R.id.status_message);
 
         findViewById(R.id.read_barcode).setOnClickListener(this);
         findViewById(R.id.filter).setOnClickListener(this);
 
 
-        JSONArray savedFilters = loadData(this);
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putStringArrayListExtra("List",  JSonParserToArrayList(savedFilters));
+        JSONArray savedFilters = FilterActivity.loadData(this);
+        result = FilterActivity.JSonParserToArrayList(savedFilters);
 
     }
 
@@ -83,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (requestCode) {
             case 1:
                 if(resultCode == Activity.RESULT_OK){
+                    result.clear();
                     result = data.getStringArrayListExtra("List");
                     Log.d("Filter:", result.toString());
                 }
@@ -91,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 IntentResult scanResult = IntentIntegrator.parseActivityResult(resultCode, data);
                 if (scanResult.getContents() != null) {
                     String url = scanResult.getContents();
-                    String stringJson = null;
+                    String stringJson;
 
                     AsyncHTTP task = new AsyncHTTP();
                     try {
