@@ -24,11 +24,6 @@ import android.widget.Toast;
 
 public class MenuActivity extends AppCompatActivity {
 
-    /*private TextView mName;
-    private TextView mDescription;
-    private TextView mAllergenes;
-    private TextView mType;*/
-
     private Menu menuOfZeDay;
 
     RecyclerView recyclerView;
@@ -61,7 +56,6 @@ public class MenuActivity extends AppCompatActivity {
                 dish.setFilters(getIntent().getStringArrayListExtra("filters"));
                 dish.setAllergenes(allergenesArray.get(j).toString());
                 dish.setType(typesArray.get(j).toString());
-
 
                 menuOfZeDay.addDish(dish);
             }
@@ -101,6 +95,4 @@ public class MenuActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }

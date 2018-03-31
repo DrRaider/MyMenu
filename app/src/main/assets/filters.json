@@ -2,7 +2,7 @@
   "filters": [
     {
       "id": "gluten",
-      "name": "gluten",
+      "name": "Gluten",
       "img": "afdiag"
     },
     {
@@ -12,13 +12,38 @@
     },
     {
       "id": "arachides",
-      "name": "Arachides",
+      "name": "Peanuts",
       "img": "arachides"
     },
     {
       "id": "oeufs",
-      "name": "Oeufs",
+      "name": "Eggs",
       "img": "oeufs"
+    },
+    {
+      "id": "crustacean",
+      "name": "Crustacean",
+      "img": "crustacean"
+    },
+    {
+      "id": "soja",
+      "name": "Soja",
+      "img": "soja"
+    },
+    {
+      "id": "fish",
+      "name": "Fish",
+      "img": "fish"
+    },
+    {
+      "id": "mustard",
+      "name": "Mustard",
+      "img": "mustard"
+    },
+    {
+      "id": "sesame",
+      "name": "Sesame",
+      "img": "sesame"
     }
   ]
 }

@@ -16,22 +16,22 @@
             android:id="@+id/status_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/read_barcode"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="104dp"
-            android:layout_marginStart="16dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="98dp"
             android:text="@string/barcode_header"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
+            android:id="@+id/barcode_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/barcode_value"
-            android:layout_below="@+id/status_message"
+            android:layout_alignEnd="@+id/status_message"
             android:layout_alignParentStart="true"
+            android:layout_below="@+id/status_message"
             android:layout_marginTop="110dp"
-            android:layout_alignEnd="@+id/status_message" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Button
             android:id="@+id/read_barcode"
