@@ -40,6 +40,13 @@ public class Menu {
                 mSafeDishList.add(mDishList.get(j));
             }
         }
+
+        if (mSafeDishList.size() == 0) {
+            Dish empty_dish = new Dish();
+            empty_dish.setName("All our apologies, we don't have any dish corresponding to your diet.");
+            mSafeDishList.add(empty_dish);
+        }
+
     }
 
     public ArrayList<Dish> getSafeDishList() {
